@@ -8,19 +8,19 @@ class SaleOrderLine(models.Model):
     margin = fields.Float("Margin", digits='Product Price', readonly=False, store=True, groups="base.group_user")
     margin_percent = fields.Float("Margin (%)", store=True, readonly=False, groups="base.group_user")
 
-    @api.onchange('price_subtotal', 'margin_percent')
-    def onchange_margin_percent(self):
-        self.margin = self.price_subtotal - (self.purchase_price * self.product_uom_qty)
-        if self._context.get('margin_percent'):
-            self.margin_percent = self._context.get('margin_percent')
-        if self.purchase_price > 0.0 and self.margin_percent and not self._context.get('get_sizes'):
-            margin_percent = self.margin_percent
-            montant_extras = self.purchase_price * (self.margin_percent)
-            self.price_unit = self.purchase_price + montant_extras
-            self.margin_percent = margin_percent
-            context = dict(self.env.context)
-            context.update({'get_sizes': True, 'margin_percent': margin_percent})
-            self.env.context = context
+#     @api.onchange('price_subtotal', 'margin_percent')
+#     def onchange_margin_percent(self):
+#         self.margin = self.price_subtotal - (self.purchase_price * self.product_uom_qty)
+#         if self._context.get('margin_percent'):
+#             self.margin_percent = self._context.get('margin_percent')
+#         if self.purchase_price > 0.0 and self.margin_percent and not self._context.get('get_sizes'):
+#             margin_percent = self.margin_percent
+#             montant_extras = self.purchase_price * (self.margin_percent)
+#             self.price_unit = self.purchase_price + montant_extras
+#             self.margin_percent = margin_percent
+#             context = dict(self.env.context)
+#             context.update({'get_sizes': True, 'margin_percent': margin_percent})
+#             self.env.context = context
 
 #     @api.onchange('product_uom_qty', 'purchase_price', 'discount')
 #     def compute_margin_1(self):
