@@ -22,21 +22,21 @@ class SaleOrderLine(models.Model):
 #             context.update({'get_sizes': True, 'margin_percent': margin_percent})
 #             self.env.context = context
 
-#     @api.onchange('product_uom_qty', 'purchase_price', 'discount')
-#     def compute_margin_1(self):
-#         self.margin = self.price_subtotal - (self.purchase_price * self.product_uom_qty)
-#         self.margin_percent = self.purchase_price and self.margin / self.purchase_price
-#         context = dict(self.env.context)
-#         context.update({'get_sizes': True})
-#         self.env.context = context
+    @api.onchange('product_uom_qty', 'purchase_price', 'discount')
+    def compute_margin_1(self):
+        self.margin = self.price_subtotal - (self.purchase_price * self.product_uom_qty)
+        self.margin_percent = self.purchase_price and self.margin / self.purchase_price
+        context = dict(self.env.context)
+        context.update({'get_sizes': True})
+        self.env.context = context
 
-#     @api.onchange('price_unit')
-#     def onchange_price_unit_1(self):
-#         if self.price_unit and not self._context.get('get_sizes'):
-#             self.write({'margin_percent': self.purchase_price and self.margin / self.purchase_price})
-#             context = dict(self.env.context)
-#             context.update({'get_sizes': True})
-#             self.env.context = context
+    @api.onchange('price_unit')
+    def onchange_price_unit_1(self):
+        if self.price_unit and not self._context.get('get_sizes'):
+            self.write({'margin_percent': self.purchase_price and self.margin / self.purchase_price})
+            context = dict(self.env.context)
+            context.update({'get_sizes': True})
+            self.env.context = context
 
     @api.onchange('margin')
     def onchange_margin(self):
