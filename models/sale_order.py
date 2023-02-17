@@ -46,5 +46,5 @@ class SaleOrderLine(models.Model):
 #     @api.onchange('margin_percent')
 #     def onchange_margin_percent(self):
 #         if self.price_unit and not self._context.get('get_sizes') and not self._context.get('margin'):
-            self.price_unit = self.purchase_price / (1 - self.margin_percent)
+#             self.price_unit = self.purchase_price / (1 - self.margin_percent)
 
