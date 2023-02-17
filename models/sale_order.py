@@ -38,13 +38,13 @@ class SaleOrderLine(models.Model):
 #             context.update({'get_sizes': True})
 #             self.env.context = context
 
-    @api.onchange('margin')
-    def onchange_margin(self):
-        if self.price_unit and not self._context.get('get_sizes') and not self._context.get('margin_percent'):
-            self.price_unit = self.purchase_price + self.margin
+#     @api.onchange('margin')
+#     def onchange_margin(self):
+#         if self.price_unit and not self._context.get('get_sizes') and not self._context.get('margin_percent'):
+#             self.price_unit = self.purchase_price + self.margin
             
-    @api.onchange('margin_percent')
-    def onchange_margin_percent(self):
-        if self.price_unit and not self._context.get('get_sizes') and not self._context.get('margin'):
+#     @api.onchange('margin_percent')
+#     def onchange_margin_percent(self):
+#         if self.price_unit and not self._context.get('get_sizes') and not self._context.get('margin'):
             self.price_unit = self.purchase_price / (1 - self.margin_percent)
 
