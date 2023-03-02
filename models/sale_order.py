@@ -7,7 +7,7 @@ class SaleOrderLine(models.Model):
 
     margin = fields.Float("Margin", digits='Product Price', readonly=False, store=True, groups="base.group_user")
     margin_percent = fields.Float("Margin (%)", store=True, readonly=False, groups="base.group_user")
-
+    adamsaat = fields.Many2one(related='product_id.x_adamsaat')
 #     @api.onchange('price_subtotal', 'margin_percent')
 #     def onchange_margin_percent(self):
 #         self.margin = self.price_subtotal - (self.purchase_price * self.product_uom_qty)
